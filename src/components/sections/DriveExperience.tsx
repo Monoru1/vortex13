@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { CarImage } from "@/components/ui/CarImage";
 import { VEHICLES } from "@/data/vehicles";
 import { EASE } from "@/lib/utils";
+import "./DriveExperience.css";
 
 const HERO_CAR = VEHICLES.find((vehicle) => vehicle.slug === "bugatti-chiron-ss-300") ?? VEHICLES[0];
 
