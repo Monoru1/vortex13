@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import type { RefObject } from "react";
 
 /** Direction de scroll — pilote la navbar intelligente. */
 export function useScrollState(threshold = 24) {
@@ -64,4 +65,39 @@ export function useLockBody(locked: boolean) {
       document.body.style.overflow = prev;
     };
   }, [locked]);
+}
+
+/** Détecte un pointeur précis (souris / trackpad) — exclut le tactile. */
+export function usePointerFine(): boolean {
+  const [fine, setFine] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(pointer: fine)").matches,
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(pointer: fine)");
+    const handler = (e: MediaQueryListEvent) => setFine(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return fine;
+}
+
+/**
+ * Indique si l'élément référencé est (au moins partiellement) dans le viewport.
+ * Sert à geler les boucles d'animation coûteuses lorsqu'elles sortent de l'écran.
+ */
+export function useInViewport<T extends Element>(
+  ref: RefObject<T | null>,
+  rootMargin = "120px",
+): boolean {
+  const [inView, setInView] = useState(true);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), {
+      rootMargin,
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref, rootMargin]);
+  return inView;
 }
