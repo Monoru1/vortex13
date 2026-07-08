@@ -187,6 +187,44 @@ html.light {
 }
 
 /* ------------------------------------------------------------------ */
+/*  HÉROS — balayage métallique one-shot + repli lumineux mobile       */
+/* ------------------------------------------------------------------ */
+.hero-sheen {
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgb(255 255 255 / 0.10) 48%,
+    rgb(255 255 255 / 0.02) 52%,
+    transparent 60%
+  );
+  transform: translateX(-60%);
+  animation: hero-sheen 1.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+}
+
+@keyframes hero-sheen {
+  from { transform: translateX(-60%); opacity: 0; }
+  30%  { opacity: 1; }
+  to   { transform: translateX(60%); opacity: 0; }
+}
+
+/* Repli statique (mobile / WebGL indisponible) : une trace lumineuse, zéro boucle. */
+.hero-fallback-beam {
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(50% 60% at 70% 22%, rgb(225 6 0 / 0.18), transparent 60%),
+    linear-gradient(115deg, transparent 46%, rgb(255 255 255 / 0.05) 54%, transparent 64%);
+}
+
+/* Intégration progressive : le nouveau Hero est injecté avant Home et l'ancien
+   premier écran local de Home est masqué uniquement sur l'accueil. */
+.vortex-home-outlet > section:first-child {
+  display: none;
+}
+
+/* ------------------------------------------------------------------ */
 /*  Curseur personnalisé (désactivé au toucher / reduced motion)       */
 /* ------------------------------------------------------------------ */
 @media (pointer: fine) {
