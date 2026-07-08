@@ -7,11 +7,13 @@ import { CustomCursor } from "@/components/fx/CustomCursor";
 import { Preloader } from "@/components/fx/Preloader";
 import { VortexAtmosphere } from "@/components/fx/VortexAtmosphere";
 import { DriveExperience } from "@/components/sections/DriveExperience";
+import { HeroVortex } from "@/components/hero/HeroVortex";
 import { EASE } from "@/lib/utils";
 
 /** Coquille applicative : navigation, transitions de page, curseur, remontée au changement de route. */
 export function Layout() {
   const { pathname, hash } = useLocation();
+  const isHome = pathname === "/";
 
   /* Remontée à chaque route ; si une ancre est présente (#billetterie…),
      on la résout après le montage de la page chargée à la demande. */
@@ -43,8 +45,11 @@ export function Layout() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: EASE }}
       >
-        <Outlet />
-        {pathname === "/" && <DriveExperience />}
+        {isHome && <HeroVortex />}
+        <div className={isHome ? "vortex-home-outlet" : undefined}>
+          <Outlet />
+        </div>
+        {isHome && <DriveExperience />}
       </motion.main>
       {/* Ligne de transition : la signature rouge balaie l'écran à chaque navigation */}
       <motion.div
