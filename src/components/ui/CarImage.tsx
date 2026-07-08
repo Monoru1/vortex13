@@ -19,7 +19,7 @@ export function CarImage({ src, alt, className, imgClassName, priority = false }
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <div className={cn("relative overflow-hidden bg-surface", className)}>
+    <div className={cn("car-frame relative overflow-hidden bg-surface", className)}>
       {/* Scène de lumière : fond de chargement et repli */}
       <div
         aria-hidden="true"
@@ -41,12 +41,15 @@ export function CarImage({ src, alt, className, imgClassName, priority = false }
           onLoad={() => setLoaded(true)}
           onError={() => setFailed(true)}
           className={cn(
-            "h-full w-full object-cover transition-opacity duration-700",
+            "h-full w-full object-cover transition-[opacity,transform,filter] duration-700 will-change-transform",
             loaded ? "opacity-100" : "opacity-0",
             imgClassName,
           )}
         />
       )}
+      <div aria-hidden="true" className="car-frame__vignette" />
+      <div aria-hidden="true" className="car-frame__glow" />
+      <div aria-hidden="true" className="car-frame__sweep" />
     </div>
   );
 }
