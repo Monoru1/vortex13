@@ -5,6 +5,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { CustomCursor } from "@/components/fx/CustomCursor";
 import { Preloader } from "@/components/fx/Preloader";
+import { VortexAtmosphere } from "@/components/fx/VortexAtmosphere";
 import { EASE } from "@/lib/utils";
 
 /** Coquille applicative : navigation, transitions de page, curseur, remontée au changement de route. */
@@ -31,10 +32,12 @@ export function Layout() {
     <>
       <Preloader />
       <CustomCursor />
+      <VortexAtmosphere />
       <Navbar />
       <motion.main
         id="contenu"
         key={pathname}
+        className="relative z-10"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: EASE }}
