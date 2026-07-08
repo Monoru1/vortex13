@@ -27,6 +27,7 @@ export function SpeedShader({ active, className }: SpeedShaderProps) {
   useEffect(() => {
     const host = hostRef.current;
     if (!host) return;
+    const container = host;
 
     // DPR plafonné : netteté suffisante, coût maîtrisé.
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -47,7 +48,7 @@ export function SpeedShader({ active, className }: SpeedShaderProps) {
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.style.display = "block";
-    host.appendChild(canvas);
+    container.appendChild(canvas);
 
     const geometry = new Triangle(gl);
     const program = new Program(gl, {
@@ -64,14 +65,14 @@ export function SpeedShader({ active, className }: SpeedShaderProps) {
     const mesh = new Mesh(gl, { geometry, program });
 
     function resize() {
-      const w = host.clientWidth || 1;
-      const h = host.clientHeight || 1;
+      const w = container.clientWidth || 1;
+      const h = container.clientHeight || 1;
       renderer.setSize(w, h);
       program.uniforms.uResolution.value = [w, h];
     }
     resize();
     const ro = new ResizeObserver(resize);
-    ro.observe(host);
+    ro.observe(container);
 
     // Souris lissée : cible immédiate, valeur interpolée dans la boucle.
     const target = { x: 0, y: 0 };
@@ -116,7 +117,7 @@ export function SpeedShader({ active, className }: SpeedShaderProps) {
       ro.disconnect();
       window.removeEventListener("pointermove", onPointerMove);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
-      if (canvas.parentNode === host) host.removeChild(canvas);
+      if (canvas.parentNode === container) container.removeChild(canvas);
     };
   }, []);
 
