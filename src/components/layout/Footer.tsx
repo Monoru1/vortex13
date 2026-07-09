@@ -10,7 +10,6 @@ const NAV = [
   { to: "/contact", label: "Contact" },
 ];
 
-/* URLs plateformes à remplacer par les comptes réels du client. */
 const SOCIAL = [
   { label: "Instagram", href: "https://www.instagram.com" },
   { label: "YouTube", href: "https://www.youtube.com" },
@@ -19,11 +18,11 @@ const SOCIAL = [
 
 export function Footer() {
   return (
-    <footer className="hairline-t bg-surface/60">
+    <footer className="relative z-20 border-t border-line bg-[#080809]/95 backdrop-blur-md">
       <div className="shell py-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
-            <p className="font-display text-3xl font-black tracking-tight" style={{ fontStretch: "125%" }}>
+            <p className="font-display text-3xl font-black tracking-[-0.04em]" style={{ fontStretch: "112%" }}>
               VORTEX
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-smoke">
@@ -80,7 +79,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="hairline-t mt-14 flex flex-col gap-3 pt-7 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-3 border-t border-line pt-7 md:flex-row md:items-center md:justify-between">
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-smoke">
             © {new Date().getFullYear()} VORTEX Automotive Museum — Site fictif de démonstration
           </p>
