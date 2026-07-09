@@ -2,8 +2,7 @@
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(70rem 42rem at 70% -10%, rgb(225 6 0 / 0.12), transparent 64%),
-    radial-gradient(54rem 36rem at 18% 28%, rgb(255 255 255 / 0.06), transparent 62%),
+    radial-gradient(54rem 34rem at 72% -8%, rgb(225 6 0 / 0.10), transparent 64%),
     rgb(var(--bg));
 }
 
@@ -13,7 +12,7 @@
   position: fixed;
   inset: 0;
   z-index: 0;
-  opacity: 0.12;
+  opacity: 0.07;
   background-image:
     linear-gradient(to right, rgb(255 255 255 / 0.10) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(255 255 255 / 0.06) 1px, transparent 1px);
@@ -23,10 +22,10 @@
 
 .history-stage {
   position: relative;
-  min-height: 100svh;
+  min-height: 92svh;
   display: grid;
   align-items: end;
-  padding-bottom: 7rem;
+  padding-bottom: 6rem;
   isolation: isolate;
 }
 
@@ -39,11 +38,11 @@
   transform: translateX(-50%) perspective(560px) rotateX(64deg);
   transform-origin: bottom;
   background-image:
-    linear-gradient(to right, rgb(244 244 242 / 0.12) 1px, transparent 1px),
-    linear-gradient(to top, rgb(244 244 242 / 0.10) 1px, transparent 1px);
+    linear-gradient(to right, rgb(244 244 242 / 0.10) 1px, transparent 1px),
+    linear-gradient(to top, rgb(244 244 242 / 0.08) 1px, transparent 1px);
   background-size: 94px 94px;
   mask-image: radial-gradient(120% 85% at 50% 100%, black 4%, transparent 68%);
-  opacity: 0.7;
+  opacity: 0.44;
 }
 
 .history-stage__light {
@@ -51,25 +50,35 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(46rem 28rem at 50% 100%, rgb(225 6 0 / 0.22), transparent 68%),
-    linear-gradient(to bottom, rgb(0 0 0 / 0.18), transparent 40%, rgb(0 0 0 / 0.72));
+    radial-gradient(46rem 28rem at 50% 100%, rgb(225 6 0 / 0.16), transparent 68%),
+    linear-gradient(to bottom, rgb(0 0 0 / 0.10), transparent 40%, rgb(0 0 0 / 0.78));
 }
 
 .history-stage__word {
-  font-size: clamp(3rem, 14vw, 10.5rem);
-  line-height: 0.84;
-  letter-spacing: -0.045em;
+  max-width: 66rem;
+  font-size: clamp(3rem, 10.2vw, 8rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
 }
 
 .history-voice {
   border: 1px solid rgb(255 255 255 / 0.12);
-  background: rgb(10 10 11 / 0.54);
+  background: rgb(10 10 11 / 0.66);
   backdrop-filter: blur(16px) saturate(135%);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 2rem 7rem rgb(0 0 0 / 0.42);
 }
 
 .history-voice__label {
   color: rgb(244 244 242 / 0.48);
+}
+
+.history-guide {
+  border-left: 2px solid var(--chapter-accent, #e10600);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--chapter-accent, #e10600) 12%, transparent), transparent);
+  padding: 1rem 1.15rem;
+  color: rgb(244 244 242 / 0.82);
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 .history-chapter {
@@ -79,6 +88,7 @@
   align-items: center;
   border-top: 1px solid var(--line);
   overflow: hidden;
+  background: linear-gradient(180deg, transparent, rgb(255 255 255 / 0.015), transparent);
 }
 
 .history-chapter::before {
@@ -92,23 +102,38 @@
   font-size: clamp(6rem, 18vw, 16rem);
   font-weight: 900;
   line-height: 0.8;
-  color: rgb(255 255 255 / 0.035);
+  color: rgb(255 255 255 / 0.026);
 }
 
 .history-chapter__media {
   position: relative;
-  min-height: 32rem;
+  min-height: 34rem;
   overflow: hidden;
-  border: 1px solid rgb(255 255 255 / 0.10);
+  border: 1px solid rgb(255 255 255 / 0.13);
   background: rgb(255 255 255 / 0.04);
-  box-shadow: 0 3rem 8rem rgb(0 0 0 / 0.34);
+  box-shadow: 0 3rem 8rem rgb(0 0 0 / 0.46);
+  transform-style: preserve-3d;
 }
 
+.history-chapter__media img {
+  filter: saturate(1.05) contrast(1.08) brightness(0.92);
+}
+
+.history-chapter__media::before,
 .history-chapter__media::after {
   content: "";
   pointer-events: none;
   position: absolute;
   inset: 0;
+  z-index: 4;
+}
+
+.history-chapter__media::before {
+  background: linear-gradient(112deg, transparent 0 38%, rgb(255 255 255 / 0.11) 46%, transparent 56%);
+  mix-blend-mode: screen;
+}
+
+.history-chapter__media::after {
   background:
     linear-gradient(to top, rgb(0 0 0 / 0.62), transparent 55%),
     radial-gradient(60% 50% at 50% 85%, var(--chapter-glow, rgb(225 6 0 / 0.22)), transparent 70%);
@@ -121,7 +146,7 @@
   bottom: 1rem;
   z-index: 5;
   border: 1px solid rgb(255 255 255 / 0.12);
-  background: rgb(0 0 0 / 0.48);
+  background: rgb(0 0 0 / 0.58);
   padding: 0.7rem 0.9rem;
   backdrop-filter: blur(12px);
 }
@@ -161,12 +186,50 @@
 .history-continue {
   border-top: 1px solid var(--line);
   background:
-    radial-gradient(48rem 26rem at 50% 0%, rgb(225 6 0 / 0.14), transparent 68%),
+    radial-gradient(48rem 26rem at 50% 0%, rgb(225 6 0 / 0.12), transparent 68%),
     rgb(var(--bg));
 }
 
 @media (max-width: 900px) {
-  .history-stage { padding-bottom: 6rem; }
-  .history-chapter { min-height: auto; padding-block: 5rem; }
-  .history-chapter__media { min-height: 24rem; }
+  .history-stage {
+    min-height: 88svh;
+    padding-bottom: 5rem;
+  }
+
+  .history-stage__word {
+    font-size: clamp(3rem, 14vw, 5.6rem);
+  }
+
+  .history-chapter {
+    min-height: auto;
+    padding-block: 4.5rem;
+  }
+
+  .history-chapter__media {
+    min-height: 24rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .history-stage {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .history-stage__word {
+    font-size: clamp(2.65rem, 14vw, 4.1rem);
+  }
+
+  .history-voice {
+    padding: 1rem;
+  }
+
+  .history-chapter {
+    padding-block: 3.5rem;
+  }
+
+  .history-chapter__media {
+    min-height: 19rem;
+  }
 }

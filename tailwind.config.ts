@@ -13,7 +13,7 @@ export default {
         vortex: "#E10600",
       },
       fontFamily: {
-        display: ['"Archivo"', "system-ui", "sans-serif"],
+        display: ['"Instrument Sans"', '"Archivo"', "system-ui", "sans-serif"],
         sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
         mono: ['"IBM Plex Mono"', "ui-monospace", "monospace"],
       },
