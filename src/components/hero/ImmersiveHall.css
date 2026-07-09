@@ -3,35 +3,63 @@
   min-height: 100svh;
   overflow: hidden;
   isolation: isolate;
-  background: radial-gradient(120% 90% at 50% -20%, rgb(225 6 0 / 0.10), transparent 55%), #0a0a0b;
+  background: #0a0a0b;
+}
+
+.immersive-hall__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.immersive-hall__backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) contrast(1.12) brightness(0.52);
+  transform: scale(1.08);
+}
+
+.immersive-hall__backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(70% 70% at 68% 42%, transparent 0 28%, rgb(10 10 11 / 0.62) 76%),
+    linear-gradient(to right, rgb(10 10 11 / 0.88), rgb(10 10 11 / 0.36) 55%, rgb(10 10 11 / 0.88)),
+    linear-gradient(to bottom, rgb(10 10 11 / 0.45), transparent 34%, rgb(10 10 11 / 0.94));
 }
 
 .immersive-hall__floor {
   position: absolute;
+  z-index: 1;
   left: 50%;
-  bottom: -5%;
-  width: 210%;
-  height: 62%;
-  transform: translateX(-50%) perspective(520px) rotateX(64deg);
+  bottom: -7%;
+  width: 230%;
+  height: 60%;
+  transform: translateX(-50%) perspective(560px) rotateX(64deg);
   transform-origin: bottom;
   background-image:
-    linear-gradient(to right, rgb(244 244 242 / 0.10) 1px, transparent 1px),
-    linear-gradient(to top, rgb(244 244 242 / 0.10) 1px, transparent 1px);
+    linear-gradient(to right, rgb(244 244 242 / 0.11) 1px, transparent 1px),
+    linear-gradient(to top, rgb(244 244 242 / 0.09) 1px, transparent 1px);
   background-size: 96px 96px;
-  mask-image: radial-gradient(120% 90% at 50% 100%, black 5%, transparent 66%);
+  mask-image: radial-gradient(120% 90% at 50% 100%, black 4%, transparent 68%);
 }
 
 .immersive-hall__glow {
   position: absolute;
+  z-index: 2;
   inset-inline: 0;
   bottom: 0;
   height: 44%;
   pointer-events: none;
-  background: radial-gradient(60% 120% at 50% 120%, rgb(225 6 0 / 0.28), transparent 66%);
+  background: radial-gradient(60% 120% at 50% 120%, rgb(225 6 0 / 0.32), transparent 66%);
 }
 
 .immersive-hall__beam {
   position: absolute;
+  z-index: 2;
   top: -20%;
   width: 2px;
   height: 150%;
@@ -48,12 +76,15 @@
   flex-direction: column;
   justify-content: flex-end;
   padding-bottom: 8rem;
+  padding-top: 9rem;
 }
 
 .immersive-hall__word {
-  font-size: clamp(3.4rem, 20vw, 15rem);
-  line-height: 0.82;
-  letter-spacing: -0.02em;
+  max-width: min-content;
+  font-size: clamp(4.8rem, 19vw, 15rem);
+  line-height: 0.8;
+  letter-spacing: -0.055em;
+  text-shadow: 0 2rem 5rem rgb(0 0 0 / 0.55);
 }
 
 .immersive-hall__letter {
@@ -68,7 +99,13 @@
 
 .immersive-hall__sub {
   max-width: 36rem;
-  color: rgb(244 244 242 / 0.66);
+  color: rgb(244 244 242 / 0.70);
+}
+
+.immersive-hall__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .immersive-hall__hud {
@@ -77,14 +114,94 @@
   bottom: 0;
   z-index: 5;
   border-top: 1px solid rgb(255 255 255 / 0.10);
-  background: rgb(10 10 11 / 0.58);
+  background: rgb(10 10 11 / 0.62);
   backdrop-filter: blur(12px);
+}
+
+.immersive-hall__hud-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem 2.5rem;
+  padding-block: 1.25rem;
 }
 
 @keyframes hall-letter-rise {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+@media (max-width: 820px) {
+  .immersive-hall {
+    min-height: auto;
+  }
+
+  .immersive-hall__backdrop img {
+    object-position: 58% 50%;
+    filter: saturate(0.9) contrast(1.08) brightness(0.42);
+  }
+
+  .immersive-hall__content {
+    min-height: 100svh;
+    justify-content: center;
+    padding-top: 8.5rem;
+    padding-bottom: 10rem;
+  }
+
+  .immersive-hall__word {
+    max-width: 100%;
+    font-size: clamp(4rem, 25vw, 7.2rem);
+    line-height: 0.86;
+    letter-spacing: -0.06em;
+  }
+
+  .immersive-hall__sub {
+    max-width: 26rem;
+    font-size: 0.98rem;
+  }
+
+  .immersive-hall__actions a {
+    width: 100%;
+    justify-content: center;
+    padding-inline: 1.25rem;
+  }
+
+  .immersive-hall__hud-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+    padding-block: 1rem;
+  }
+
+  .immersive-hall__hud-inner p {
+    border: 1px solid rgb(255 255 255 / 0.08);
+    padding: 0.8rem;
+    background: rgb(255 255 255 / 0.035);
+  }
+
+  .immersive-hall__hud-inner > span {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .immersive-hall__content {
+    padding-top: 7rem;
+  }
+
+  .immersive-hall__word {
+    font-size: clamp(3.35rem, 24vw, 5.6rem);
+  }
+
+  .immersive-hall__hud {
+    position: relative;
+  }
+
+  .immersive-hall__hud-inner {
+    grid-template-columns: 1fr;
   }
 }
 

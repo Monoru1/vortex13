@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
+import { img } from "@/data/vehicles";
 import { EASE } from "@/lib/utils";
 import "./ImmersiveHall.css";
 
@@ -10,6 +11,8 @@ const STATS = [
   ["Doyenne", "1954"],
   ["Nations", "9 pays"],
 ];
+
+const HALL_IMAGE = img("photo-1493238792000-8113da705763", 2200);
 
 export function ImmersiveHall() {
   const reduced = useReducedMotion();
@@ -23,6 +26,9 @@ export function ImmersiveHall() {
 
   return (
     <section className="immersive-hall" aria-label="Hall d'entrée VORTEX">
+      <div className="immersive-hall__backdrop" aria-hidden="true">
+        <img src={HALL_IMAGE} alt="" loading="eager" decoding="async" />
+      </div>
       <div className="immersive-hall__floor" aria-hidden="true" />
       <div className="immersive-hall__glow" aria-hidden="true" />
       {[14, 32, 50, 68, 86].map((left, index) => (
@@ -66,7 +72,7 @@ export function ImmersiveHall() {
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.75, ease: EASE }}
-            className="mt-9 flex flex-wrap gap-4"
+            className="immersive-hall__actions mt-9"
           >
             <Link
               to="/vehicules/bugatti-chiron-ss-300"
@@ -85,7 +91,7 @@ export function ImmersiveHall() {
       </div>
 
       <div className="immersive-hall__hud">
-        <div className="shell flex flex-wrap items-center justify-between gap-x-10 gap-y-3 py-5">
+        <div className="shell immersive-hall__hud-inner">
           {STATS.map(([label, value]) => (
             <p key={label} className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">
               {label} <span className="ml-2 text-white/90">{value}</span>
