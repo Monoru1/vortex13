@@ -7,6 +7,7 @@ import { CustomCursor } from "@/components/fx/CustomCursor";
 import { Preloader } from "@/components/fx/Preloader";
 import { VortexAtmosphere } from "@/components/fx/VortexAtmosphere";
 import { DriveExperience } from "@/components/sections/DriveExperience";
+import { DimensionalGarage } from "@/components/sections/DimensionalGarage";
 import { HeroVortex } from "@/components/hero/HeroVortex";
 import { EASE } from "@/lib/utils";
 
@@ -50,6 +51,7 @@ export function Layout() {
           <Outlet />
         </div>
         {isHome && <DriveExperience />}
+        {isHome && <DimensionalGarage />}
       </motion.main>
       {/* Ligne de transition : la signature rouge balaie l'écran à chaque navigation */}
       <motion.div
