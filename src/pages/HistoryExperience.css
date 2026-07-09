@@ -56,9 +56,9 @@
 }
 
 .history-stage__word {
-  font-size: clamp(3rem, 14vw, 10.5rem);
-  line-height: 0.84;
-  letter-spacing: -0.045em;
+  font-size: clamp(3rem, 12vw, 9rem);
+  line-height: 0.86;
+  letter-spacing: -0.05em;
 }
 
 .history-voice {
@@ -70,6 +70,15 @@
 
 .history-voice__label {
   color: rgb(244 244 242 / 0.48);
+}
+
+.history-guide {
+  border-left: 2px solid var(--chapter-accent, #e10600);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--chapter-accent, #e10600) 14%, transparent), transparent);
+  padding: 1rem 1.15rem;
+  color: rgb(244 244 242 / 0.82);
+  font-size: 1rem;
+  line-height: 1.7;
 }
 
 .history-chapter {
@@ -102,13 +111,24 @@
   border: 1px solid rgb(255 255 255 / 0.10);
   background: rgb(255 255 255 / 0.04);
   box-shadow: 0 3rem 8rem rgb(0 0 0 / 0.34);
+  transform-style: preserve-3d;
 }
 
+.history-chapter__media::before,
 .history-chapter__media::after {
   content: "";
   pointer-events: none;
   position: absolute;
   inset: 0;
+  z-index: 4;
+}
+
+.history-chapter__media::before {
+  background: linear-gradient(112deg, transparent 0 38%, rgb(255 255 255 / 0.12) 46%, transparent 56%);
+  mix-blend-mode: screen;
+}
+
+.history-chapter__media::after {
   background:
     linear-gradient(to top, rgb(0 0 0 / 0.62), transparent 55%),
     radial-gradient(60% 50% at 50% 85%, var(--chapter-glow, rgb(225 6 0 / 0.22)), transparent 70%);
@@ -166,7 +186,45 @@
 }
 
 @media (max-width: 900px) {
-  .history-stage { padding-bottom: 6rem; }
-  .history-chapter { min-height: auto; padding-block: 5rem; }
-  .history-chapter__media { min-height: 24rem; }
+  .history-stage {
+    min-height: 92svh;
+    padding-bottom: 5rem;
+  }
+
+  .history-stage__word {
+    font-size: clamp(3rem, 16vw, 5.6rem);
+  }
+
+  .history-chapter {
+    min-height: auto;
+    padding-block: 4.5rem;
+  }
+
+  .history-chapter__media {
+    min-height: 24rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .history-stage {
+    min-height: auto;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+  }
+
+  .history-stage__word {
+    font-size: clamp(2.7rem, 15vw, 4.3rem);
+  }
+
+  .history-voice {
+    padding: 1rem;
+  }
+
+  .history-chapter {
+    padding-block: 3.5rem;
+  }
+
+  .history-chapter__media {
+    min-height: 19rem;
+  }
 }
