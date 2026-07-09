@@ -6,9 +6,7 @@ import { Footer } from "./Footer";
 import { CustomCursor } from "@/components/fx/CustomCursor";
 import { Preloader } from "@/components/fx/Preloader";
 import { VortexAtmosphere } from "@/components/fx/VortexAtmosphere";
-import { DriveExperience } from "@/components/sections/DriveExperience";
-import { DimensionalGarage } from "@/components/sections/DimensionalGarage";
-import { HeroVortex } from "@/components/hero/HeroVortex";
+import { ImmersiveHall } from "@/components/hero/ImmersiveHall";
 import { EASE } from "@/lib/utils";
 
 /** Coquille applicative : navigation, transitions de page, curseur, remontée au changement de route. */
@@ -36,7 +34,7 @@ export function Layout() {
     <>
       <Preloader />
       <CustomCursor />
-      <VortexAtmosphere />
+      {!isHome && <VortexAtmosphere />}
       <Navbar />
       <motion.main
         id="contenu"
@@ -46,12 +44,10 @@ export function Layout() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: EASE }}
       >
-        {isHome && <HeroVortex />}
+        {isHome && <ImmersiveHall />}
         <div className={isHome ? "vortex-home-outlet" : undefined}>
           <Outlet />
         </div>
-        {isHome && <DriveExperience />}
-        {isHome && <DimensionalGarage />}
       </motion.main>
       {/* Ligne de transition : la signature rouge balaie l'écran à chaque navigation */}
       <motion.div
