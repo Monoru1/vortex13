@@ -2,15 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------------------------------------------ */
-/*  Design tokens — thème sombre par défaut, thème "galerie blanche"  */
-/* ------------------------------------------------------------------ */
 :root,
 html.dark {
-  --bg: 10 10 11;        /* carbone */
-  --surface: 19 19 22;   /* onyx */
+  --bg: 10 10 11;
+  --surface: 19 19 22;
   --raised: 27 27 31;
-  --ink: 244 244 242;    /* os */
+  --ink: 244 244 242;
   --smoke: 148 152 158;
   --line: rgb(244 244 242 / 0.09);
   --glass: rgb(19 19 22 / 0.55);
@@ -53,8 +50,11 @@ html.light {
   }
   h1, h2, h3, h4 {
     @apply font-display;
-    font-stretch: 115%;
+    font-stretch: 108%;
     text-wrap: balance;
+  }
+  p, li, dd, dt {
+    letter-spacing: -0.01em;
   }
   img {
     @apply select-none;
@@ -66,7 +66,7 @@ html.light {
     @apply mx-auto w-full max-w-shell px-6 md:px-10 lg:px-16;
   }
   .telemetry {
-    @apply font-mono text-[11px] uppercase tracking-[0.28em] text-smoke;
+    @apply font-mono text-[10px] uppercase tracking-[0.28em] text-smoke;
   }
   .telemetry::before {
     content: "";
@@ -84,12 +84,9 @@ html.light {
   .hairline-b { border-bottom: 1px solid var(--line); }
 }
 
-/* ------------------------------------------------------------------ */
-/*  PAGE AMBIENCE — fond voiture par page + transition de salle        */
-/* ------------------------------------------------------------------ */
 .page-ambience {
   --page-ambience-image: none;
-  --page-ambience-accent: rgb(225 6 0 / 0.16);
+  --page-ambience-accent: rgb(225 6 0 / 0.12);
   --page-ambience-position: center;
   pointer-events: none;
   position: fixed;
@@ -97,12 +94,14 @@ html.light {
   z-index: 0;
   overflow: hidden;
   background:
-    radial-gradient(52rem 32rem at 75% 10%, var(--page-ambience-accent), transparent 68%),
-    linear-gradient(to bottom, rgb(10 10 11 / 0.42), rgb(10 10 11 / 0.92)),
+    radial-gradient(46rem 28rem at 78% 8%, var(--page-ambience-accent), transparent 70%),
     var(--page-ambience-image);
-  background-size: auto, auto, cover;
-  background-position: center, center, var(--page-ambience-position);
+  background-size: auto, cover;
+  background-position: center, var(--page-ambience-position);
   background-repeat: no-repeat;
+  filter: saturate(0.72) contrast(1.08) brightness(0.36) blur(1.5px);
+  transform: scale(1.04);
+  mask-image: linear-gradient(to bottom, black 0 18rem, rgb(0 0 0 / 0.42) 30rem, transparent 62rem);
 }
 
 .page-ambience::before,
@@ -114,17 +113,17 @@ html.light {
 
 .page-ambience::before {
   background:
-    linear-gradient(to right, rgb(10 10 11 / 0.90), rgb(10 10 11 / 0.46) 50%, rgb(10 10 11 / 0.88)),
-    linear-gradient(to bottom, rgb(10 10 11 / 0.72), transparent 28%, rgb(10 10 11 / 0.96));
+    linear-gradient(to right, rgb(10 10 11 / 0.92), rgb(10 10 11 / 0.68) 48%, rgb(10 10 11 / 0.94)),
+    linear-gradient(to bottom, rgb(10 10 11 / 0.78), rgb(10 10 11 / 0.88) 42%, rgb(10 10 11));
 }
 
 .page-ambience::after {
-  opacity: 0.12;
+  opacity: 0.08;
   background-image:
-    linear-gradient(to right, rgb(255 255 255 / 0.12) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgb(255 255 255 / 0.10) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.07) 1px, transparent 1px);
   background-size: 84px 84px;
-  mask-image: radial-gradient(circle at 50% 0%, black, transparent 74%);
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
 }
 
 .route-door {
@@ -133,7 +132,7 @@ html.light {
   inset: 0;
   z-index: 90;
   background:
-    linear-gradient(90deg, rgb(10 10 11), rgb(10 10 11 / 0.78), rgb(225 6 0 / 0.45), rgb(10 10 11 / 0.78), rgb(10 10 11));
+    linear-gradient(90deg, rgb(10 10 11), rgb(10 10 11 / 0.82), rgb(225 6 0 / 0.38), rgb(10 10 11 / 0.82), rgb(10 10 11));
   transform: translateX(-105%);
   mix-blend-mode: screen;
 }
@@ -265,6 +264,13 @@ html.light {
   }
 }
 
+@media (max-width: 760px) {
+  .page-ambience {
+    filter: saturate(0.55) contrast(1.05) brightness(0.28) blur(2px);
+    mask-image: linear-gradient(to bottom, black 0 14rem, transparent 42rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -272,7 +278,7 @@ html.light {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .page-ambience { opacity: 0.72; }
+  .page-ambience { opacity: 0.4; }
 }
 
 ::-webkit-scrollbar { width: 10px; }
