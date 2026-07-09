@@ -12,65 +12,79 @@ import { CarImage } from "@/components/ui/CarImage";
 import { EASE } from "@/lib/utils";
 import "./HistoryExperience.css";
 
+const GUIDE_LINES = [
+  "Avance.",
+  "La première chose à écouter ici n'est pas un moteur.",
+  "C'est le silence avant qu'il démarre.",
+];
+
 const CHAPTERS = [
   {
     index: "01",
     eyebrow: "Arrival",
-    title: ["Le bâtiment", "apparaît"],
-    voice: "Avant la première voiture, il y a le silence. Une nef noire, une verrière, une ligne rouge au sol. VORTEX commence comme une entrée dans un lieu interdit.",
+    title: ["La porte", "respire"],
+    voice:
+      "Tu arrives devant une halle noire. Rien ne bouge. Puis une ligne rouge s'allume au sol, comme si le bâtiment venait de comprendre que tu étais là.",
+    guide: "Ici, les voitures ne sont pas exposées. Elles attendent qu'on les réveille.",
     image: img("photo-1568605117036-5fe5e7bab0b7", 1800),
     caption: "La Nef — ancienne halle industrielle, verrière de 90 m",
     accent: "#E10600",
     glow: "rgb(225 6 0 / 0.24)",
     beats: [
-      ["2003", "Onze voitures sortent d'un hangar de Montrouge."],
-      ["2011", "Une file d'attente devant une 250 GTO change tout."],
-      ["2014", "Le musée quitte la collection privée et devient un parcours."],
+      ["2003", "Onze voitures dorment dans un hangar de Montrouge."],
+      ["2011", "Une foule se forme devant une seule Ferrari. Le fondateur comprend que la collection ne lui appartient plus."],
+      ["2014", "Les clés quittent le privé. VORTEX devient un lieu."],
     ],
   },
   {
     index: "02",
     eyebrow: "The Hall",
-    title: ["Les portes", "s'ouvrent"],
-    voice: "Le visiteur ne scrolle pas : il avance. Les salles sont pensées comme des ailes, chaque époque possède une température, une matière, un rythme.",
+    title: ["Les ailes", "s'allument"],
+    voice:
+      "La halle ne raconte pas l'histoire en ligne droite. Elle la divise en températures : laiton chaud, rouge brutal, bleu électrique, violet laboratoire.",
+    guide: "Chaque aile change la lumière avant même que tu voies la voiture.",
     image: img("photo-1526726538690-5cbf956ae2fd", 1800),
     caption: "Aile Classiques — aluminium, laiton, cuir, lumière chaude",
     accent: "#C8A96A",
     glow: "rgb(200 169 106 / 0.25)",
     beats: [
-      ["Classiques", "Les machines qui ont donné naissance au mythe."],
-      ["Supercars", "La démesure analogue : affiches, V12, lignes basses."],
-      ["Hypercars", "Le carbone, les LED, la télémétrie, la vitesse pure."],
+      ["Classiques", "Les machines qui ont inventé le mythe."],
+      ["Supercars", "L'époque où les voitures deviennent des posters, puis des légendes."],
+      ["Hypercars", "Le carbone, les LED, la télémétrie, la vitesse impossible."],
     ],
   },
   {
     index: "03",
     eyebrow: "The Machine",
-    title: ["La voiture", "devient scène"],
-    voice: "Chaque showroom isole la machine. Le texte recule, la lumière parle, le scanner révèle. On ne lit plus une fiche : on entre dans une salle.",
+    title: ["Une voiture", "prend la salle"],
+    voice:
+      "Dans le showroom, l'interface disparaît. Il reste la voiture, les points de scan, la plaque technique et cette impression que la machine pourrait démarrer derrière l'écran.",
+    guide: "Ne lis pas la fiche. Regarde pourquoi elle mérite sa propre salle.",
     image: img("photo-1493238792000-8113da705763", 1800),
     caption: "Salle Hypercars — scanner actif, lumière froide, carbone",
     accent: "#43B4FF",
     glow: "rgb(67 180 255 / 0.25)",
     beats: [
-      ["Scanner", "Une passe lumineuse révèle les points techniques."],
-      ["Plaque", "La fiche carbone/aluminium grave la donnée dans l'espace."],
-      ["Transition", "La prochaine voiture est une invitation, pas un simple lien."],
+      ["Scanner", "Une passe lumineuse révèle la mécanique comme un instrument chirurgical."],
+      ["Plaque", "La donnée devient matière : aluminium, carbone, chiffres gravés."],
+      ["Suite", "La voiture suivante n'est pas un lien. C'est une autre porte."],
     ],
   },
   {
     index: "04",
     eyebrow: "Legacy",
-    title: ["L'histoire", "continue"],
-    voice: "VORTEX ne célèbre pas seulement la performance. Le musée raconte pourquoi ces objets ont changé la culture, les ingénieurs, et l'imaginaire collectif.",
+    title: ["Le musée", "te garde"],
+    voice:
+      "La performance attire. L'histoire retient. Une fois la vitesse passée, il reste les ingénieurs, les records, les erreurs, les obsessions et les rêves impossibles.",
+    guide: "Quand tu quittes VORTEX, l'idée est simple : avoir envie d'ouvrir une autre salle.",
     image: img("photo-1626668893632-6f3a4466d22f", 1800),
     caption: "Aile Concepts — laboratoire, verre, violet froid, futur",
     accent: "#9C7BD8",
     glow: "rgb(156 123 216 / 0.25)",
     beats: [
-      ["Mémoire", "Chaque voiture est replacée dans son époque."],
+      ["Mémoire", "Chaque voiture est replacée dans sa culture."],
       ["Rythme", "Silence, révélation, respiration, intensité."],
-      ["Suite", "Le visiteur doit avoir envie d'ouvrir la salle suivante."],
+      ["Retour", "Le visiteur ne finit pas une page. Il continue la visite."],
     ],
   },
 ];
@@ -84,7 +98,7 @@ function Chapter({ chapter }: { chapter: (typeof CHAPTERS)[number] }) {
 
   return (
     <section className="history-chapter" data-index={chapter.index} style={style}>
-      <div className="shell relative z-10 grid gap-12 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:py-32">
+      <div className="shell relative z-10 grid gap-12 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-32">
         <div>
           <Reveal>
             <p className="telemetry" style={{ color: chapter.accent }}>{chapter.eyebrow}</p>
@@ -95,7 +109,12 @@ function Chapter({ chapter }: { chapter: (typeof CHAPTERS)[number] }) {
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-7 max-w-xl text-base leading-[1.8] text-smoke md:text-lg">{chapter.voice}</p>
+            <p className="mt-7 max-w-xl text-base leading-[1.85] text-white/72 md:text-lg">{chapter.voice}</p>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <blockquote className="history-guide mt-8" style={{ borderColor: chapter.accent }}>
+              <p>{chapter.guide}</p>
+            </blockquote>
           </Reveal>
           <div className="history-rail mt-10">
             {chapter.beats.map(([label, text], index) => (
@@ -159,20 +178,20 @@ export default function History() {
             transition={{ delay: 0.12, duration: 0.95, ease: EASE }}
             className="history-stage__word mt-6 max-w-6xl font-black uppercase text-white"
           >
-            On n'entre pas dans un site.
-            <br />
-            On entre dans VORTEX.
+            Le musée qui ne voulait pas rester silencieux.
           </motion.h1>
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.32, duration: 0.8, ease: EASE }}
-            className="history-voice mt-9 max-w-2xl p-6 md:p-7"
+            className="history-voice mt-9 max-w-3xl p-6 md:p-7"
           >
             <p className="history-voice__label font-mono text-[10px] uppercase tracking-[0.24em]">Guide invisible</p>
-            <p className="mt-4 text-lg leading-relaxed text-white/82">
-              « Avance. La première chose à écouter ici n'est pas un moteur. C'est le silence avant qu'il démarre. »
-            </p>
+            <div className="mt-4 grid gap-2 text-lg leading-relaxed text-white/82 md:text-xl">
+              {GUIDE_LINES.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
           </motion.div>
         </div>
       </header>
