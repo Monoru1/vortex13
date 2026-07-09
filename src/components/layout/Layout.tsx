@@ -10,7 +10,6 @@ import { ImmersiveHall } from "@/components/hero/ImmersiveHall";
 import { PageAmbience } from "@/components/layout/PageAmbience";
 import { EASE } from "@/lib/utils";
 
-/** Coquille applicative : navigation, transitions de page, curseur, remontée au changement de route. */
 export function Layout() {
   const { pathname, hash } = useLocation();
   const isHome = pathname === "/";
@@ -40,10 +39,10 @@ export function Layout() {
         id="contenu"
         key={pathname}
         className="relative z-10"
-        initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        exit={{ opacity: 0, y: -12, filter: "blur(8px)" }}
-        transition={{ duration: 0.72, ease: EASE }}
+        initial={{ opacity: 0, y: 24, scale: 0.992, filter: "blur(10px)" }}
+        animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        exit={{ opacity: 0, y: -18, scale: 1.006, filter: "blur(10px)" }}
+        transition={{ duration: 0.82, ease: EASE }}
       >
         {isHome && <ImmersiveHall />}
         <div className={isHome ? "vortex-home-outlet" : undefined}>
@@ -54,17 +53,19 @@ export function Layout() {
         key={`door-${pathname}`}
         aria-hidden="true"
         className="route-door"
-        initial={{ x: "-105%" }}
-        animate={{ x: ["-105%", "0%", "105%"], opacity: [0, 1, 0] }}
-        transition={{ duration: 0.95, times: [0, 0.42, 1], ease: EASE }}
-      />
+        initial={{ x: "-108%" }}
+        animate={{ x: ["-108%", "0%", "0%", "108%"], opacity: [0, 1, 1, 0] }}
+        transition={{ duration: 1.15, times: [0, 0.32, 0.55, 1], ease: EASE }}
+      >
+        <span className="route-door__core" />
+      </motion.div>
       <motion.div
-        key={`wipe-${pathname}`}
+        key={`scan-${pathname}`}
         aria-hidden="true"
-        className="pointer-events-none fixed inset-x-0 top-0 z-[91] h-[2px] bg-vortex"
-        initial={{ scaleX: 0, transformOrigin: "left" }}
-        animate={{ scaleX: [0, 1, 1], opacity: [1, 1, 0] }}
-        transition={{ duration: 1.1, times: [0, 0.6, 1], ease: EASE }}
+        className="route-scan"
+        initial={{ x: "-110%" }}
+        animate={{ x: ["-110%", "110%"], opacity: [0, 1, 0] }}
+        transition={{ duration: 1.05, delay: 0.08, ease: EASE }}
       />
       <Footer />
     </>
