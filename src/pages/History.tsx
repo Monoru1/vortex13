@@ -14,35 +14,35 @@ import "./HistoryExperience.css";
 
 const GUIDE_LINES = [
   "Avance.",
-  "La première chose à écouter ici n'est pas un moteur.",
-  "C'est le silence avant qu'il démarre.",
+  "Ici, l'histoire ne se lit pas en dates.",
+  "Elle s'allume, salle après salle.",
 ];
 
 const CHAPTERS = [
   {
     index: "01",
-    eyebrow: "Arrival",
-    title: ["La porte", "respire"],
+    eyebrow: "Avant VORTEX",
+    title: ["La halle", "était vide"],
     voice:
-      "Tu arrives devant une halle noire. Rien ne bouge. Puis une ligne rouge s'allume au sol, comme si le bâtiment venait de comprendre que tu étais là.",
-    guide: "Ici, les voitures ne sont pas exposées. Elles attendent qu'on les réveille.",
+      "Au départ, il n'y avait ni billetterie, ni boutique, ni parcours. Juste une halle froide, onze voitures sous housse et une obsession : ne pas laisser ces machines devenir silencieuses.",
+    guide: "Regarde le vide d'abord. C'est lui qui donne du poids à la première voiture.",
     image: img("photo-1568605117036-5fe5e7bab0b7", 1800),
     caption: "La Nef — ancienne halle industrielle, verrière de 90 m",
     accent: "#E10600",
     glow: "rgb(225 6 0 / 0.24)",
     beats: [
       ["2003", "Onze voitures dorment dans un hangar de Montrouge."],
-      ["2011", "Une foule se forme devant une seule Ferrari. Le fondateur comprend que la collection ne lui appartient plus."],
+      ["2011", "Une foule se forme devant une seule Ferrari. La collection privée devient un appel public."],
       ["2014", "Les clés quittent le privé. VORTEX devient un lieu."],
     ],
   },
   {
     index: "02",
-    eyebrow: "The Hall",
-    title: ["Les ailes", "s'allument"],
+    eyebrow: "La première lumière",
+    title: ["Les ailes", "s'ouvrent"],
     voice:
-      "La halle ne raconte pas l'histoire en ligne droite. Elle la divise en températures : laiton chaud, rouge brutal, bleu électrique, violet laboratoire.",
-    guide: "Chaque aile change la lumière avant même que tu voies la voiture.",
+      "La halle ne classe pas les voitures comme un catalogue. Elle les sépare par température : laiton chaud, rouge brutal, bleu électrique, violet laboratoire.",
+    guide: "La lumière arrive avant la fiche technique. C'est elle qui prépare ton œil.",
     image: img("photo-1526726538690-5cbf956ae2fd", 1800),
     caption: "Aile Classiques — aluminium, laiton, cuir, lumière chaude",
     accent: "#C8A96A",
@@ -55,11 +55,11 @@ const CHAPTERS = [
   },
   {
     index: "03",
-    eyebrow: "The Machine",
-    title: ["Une voiture", "prend la salle"],
+    eyebrow: "La salle machine",
+    title: ["La voiture", "prend le centre"],
     voice:
-      "Dans le showroom, l'interface disparaît. Il reste la voiture, les points de scan, la plaque technique et cette impression que la machine pourrait démarrer derrière l'écran.",
-    guide: "Ne lis pas la fiche. Regarde pourquoi elle mérite sa propre salle.",
+      "Dans le showroom, le décor s'efface. Il reste la voiture, les points de scan, la plaque technique et cette tension étrange : la machine semble pouvoir démarrer derrière l'écran.",
+    guide: "Le fond n'est qu'une température. Le sujet, c'est la voiture.",
     image: img("photo-1493238792000-8113da705763", 1800),
     caption: "Salle Hypercars — scanner actif, lumière froide, carbone",
     accent: "#43B4FF",
@@ -72,11 +72,11 @@ const CHAPTERS = [
   },
   {
     index: "04",
-    eyebrow: "Legacy",
-    title: ["Le musée", "te garde"],
+    eyebrow: "Après la vitesse",
+    title: ["L'histoire", "reste"],
     voice:
       "La performance attire. L'histoire retient. Une fois la vitesse passée, il reste les ingénieurs, les records, les erreurs, les obsessions et les rêves impossibles.",
-    guide: "Quand tu quittes VORTEX, l'idée est simple : avoir envie d'ouvrir une autre salle.",
+    guide: "On quitte une salle quand on a envie d'en ouvrir une autre.",
     image: img("photo-1626668893632-6f3a4466d22f", 1800),
     caption: "Aile Concepts — laboratoire, verre, violet froid, futur",
     accent: "#9C7BD8",
@@ -98,11 +98,11 @@ function Chapter({ chapter }: { chapter: (typeof CHAPTERS)[number] }) {
 
   return (
     <section className="history-chapter" data-index={chapter.index} style={style}>
-      <div className="shell relative z-10 grid gap-12 py-24 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:py-32">
+      <div className="shell relative z-10 grid gap-12 py-24 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:py-32">
         <div>
           <Reveal>
             <p className="telemetry" style={{ color: chapter.accent }}>{chapter.eyebrow}</p>
-            <h2 className="mt-6 text-[clamp(2.5rem,7vw,5.8rem)] font-black uppercase leading-[0.9] tracking-tight">
+            <h2 className="mt-6 text-[clamp(2.4rem,6.5vw,5.4rem)] font-black uppercase leading-[0.92] tracking-[-0.06em]">
               {chapter.title[0]}
               <br />
               {chapter.title[1]}
@@ -130,7 +130,7 @@ function Chapter({ chapter }: { chapter: (typeof CHAPTERS)[number] }) {
 
         <motion.figure
           className="history-chapter__media"
-          initial={reduced ? false : { opacity: 0, y: 42, rotateY: -5 }}
+          initial={reduced ? false : { opacity: 0, y: 42, rotateY: -4 }}
           whileInView={reduced ? undefined : { opacity: 1, y: 0, rotateY: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.9, ease: EASE }}
@@ -176,9 +176,9 @@ export default function History() {
             initial={reduced ? false : { opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12, duration: 0.95, ease: EASE }}
-            className="history-stage__word mt-6 max-w-6xl font-black uppercase text-white"
+            className="history-stage__word mt-6 font-black uppercase text-white"
           >
-            Le musée qui ne voulait pas rester silencieux.
+            Le musée qui réveille les machines.
           </motion.h1>
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 18 }}
@@ -205,7 +205,7 @@ export default function History() {
           <div className="shell py-24 md:py-32">
             <Reveal>
               <p className="telemetry">Aujourd'hui</p>
-              <h2 className="mt-5 text-[clamp(2.4rem,7vw,5.4rem)] font-black uppercase leading-[0.9] tracking-tight">
+              <h2 className="mt-5 text-[clamp(2.4rem,6.5vw,5rem)] font-black uppercase leading-[0.92] tracking-[-0.06em]">
                 La visite ne s'arrête pas.
               </h2>
             </Reveal>
