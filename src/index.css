@@ -28,9 +28,6 @@ html.light {
   color-scheme: light;
 }
 
-/* ------------------------------------------------------------------ */
-/*  Base                                                               */
-/* ------------------------------------------------------------------ */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -43,17 +40,12 @@ html.light {
       radial-gradient(circle at 20% -10%, rgb(225 6 0 / 0.13), transparent 34rem),
       radial-gradient(circle at 90% 10%, rgb(255 255 255 / 0.07), transparent 32rem),
       rgb(var(--bg));
-    /* Filet de sécurité : jamais de défilement horizontal parasite sur mobile.
-       `clip` (et non `hidden`) borne l'axe X SANS créer de conteneur de
-       défilement — sans quoi `body` capterait le scroll et casserait le
-       `position: sticky` de la barre d'outils Collections. */
     overflow-x: clip;
   }
   ::selection {
     background: #e10600;
     color: #f4f4f2;
   }
-  /* Focus clavier visible partout — accessibilité non négociable */
   :focus-visible {
     outline: 2px solid #e10600;
     outline-offset: 3px;
@@ -69,14 +61,10 @@ html.light {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/*  Composants récurrents                                              */
-/* ------------------------------------------------------------------ */
 @layer components {
   .shell {
     @apply mx-auto w-full max-w-shell px-6 md:px-10 lg:px-16;
   }
-  /* Étiquette télémétrie : la signature typographique du site */
   .telemetry {
     @apply font-mono text-[11px] uppercase tracking-[0.28em] text-smoke;
   }
@@ -97,8 +85,59 @@ html.light {
 }
 
 /* ------------------------------------------------------------------ */
-/*  VORTEX FX — atmosphère premium, vitesse, reflets                   */
+/*  PAGE AMBIENCE — fond voiture par page + transition de salle        */
 /* ------------------------------------------------------------------ */
+.page-ambience {
+  --page-ambience-image: none;
+  --page-ambience-accent: rgb(225 6 0 / 0.16);
+  --page-ambience-position: center;
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(52rem 32rem at 75% 10%, var(--page-ambience-accent), transparent 68%),
+    linear-gradient(to bottom, rgb(10 10 11 / 0.42), rgb(10 10 11 / 0.92)),
+    var(--page-ambience-image);
+  background-size: auto, auto, cover;
+  background-position: center, center, var(--page-ambience-position);
+  background-repeat: no-repeat;
+}
+
+.page-ambience::before,
+.page-ambience::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.page-ambience::before {
+  background:
+    linear-gradient(to right, rgb(10 10 11 / 0.90), rgb(10 10 11 / 0.46) 50%, rgb(10 10 11 / 0.88)),
+    linear-gradient(to bottom, rgb(10 10 11 / 0.72), transparent 28%, rgb(10 10 11 / 0.96));
+}
+
+.page-ambience::after {
+  opacity: 0.12;
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.12) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.08) 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 74%);
+}
+
+.route-door {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background:
+    linear-gradient(90deg, rgb(10 10 11), rgb(10 10 11 / 0.78), rgb(225 6 0 / 0.45), rgb(10 10 11 / 0.78), rgb(10 10 11));
+  transform: translateX(-105%);
+  mix-blend-mode: screen;
+}
+
 .vortex-noise {
   opacity: 0.08;
   mix-blend-mode: soft-light;
@@ -186,9 +225,6 @@ html.light {
   100% { opacity: 0; transform: translateX(330%) skewX(-18deg); }
 }
 
-/* ------------------------------------------------------------------ */
-/*  HÉROS — balayage métallique one-shot + repli lumineux mobile       */
-/* ------------------------------------------------------------------ */
 .hero-sheen {
   pointer-events: none;
   mix-blend-mode: screen;
@@ -209,7 +245,6 @@ html.light {
   to   { transform: translateX(60%); opacity: 0; }
 }
 
-/* Repli statique (mobile / WebGL indisponible) : une trace lumineuse, zéro boucle. */
 .hero-fallback-beam {
   pointer-events: none;
   mix-blend-mode: screen;
@@ -218,15 +253,10 @@ html.light {
     linear-gradient(115deg, transparent 46%, rgb(255 255 255 / 0.05) 54%, transparent 64%);
 }
 
-/* Intégration progressive : le nouveau Hero est injecté avant Home et l'ancien
-   premier écran local de Home est masqué uniquement sur l'accueil. */
 .vortex-home-outlet > section:first-child {
   display: none;
 }
 
-/* ------------------------------------------------------------------ */
-/*  Curseur personnalisé (désactivé au toucher / reduced motion)       */
-/* ------------------------------------------------------------------ */
 @media (pointer: fine) {
   html.cursor-custom,
   html.cursor-custom a,
@@ -235,9 +265,6 @@ html.light {
   }
 }
 
-/* ------------------------------------------------------------------ */
-/*  Mouvement réduit : on respecte la préférence système               */
-/* ------------------------------------------------------------------ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -245,9 +272,9 @@ html.light {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .page-ambience { opacity: 0.72; }
 }
 
-/* Barre de défilement discrète, cohérente avec l'identité */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: rgb(var(--bg)); }
 ::-webkit-scrollbar-thumb {
