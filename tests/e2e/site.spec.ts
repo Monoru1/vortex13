@@ -48,7 +48,12 @@ test("critical accessibility rules pass", async ({ page }) => {
 });
 
 test("hero remains semantic and image-led", async ({ page }) => {
-  await expect(page.locator('header img[alt*="Voiture"]').first()).toBeVisible();
+  const heroImage = page.locator('header img[alt*="Voiture"]').first();
+
+  await expect(heroImage).toBeVisible();
+  await expect.poll(async () => {
+    return await heroImage.evaluate((img: HTMLImageElement) => img.naturalWidth > 0 && img.naturalHeight > 0);
+  }).toBeTruthy();
   await expect(page.getByRole("link", { name: /Découvrir la collection/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /Notre histoire/i })).toBeVisible();
 });

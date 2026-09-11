@@ -3,11 +3,8 @@ import { ArrowDown, ArrowRight, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Seo } from "@/components/seo/Seo";
 import { EASE } from "@/lib/utils";
-
-const HERO_IMAGE =
-  "https://commons.wikimedia.org/wiki/Special:FilePath/1955_Mercedes-Benz_300_SL_Gullwing_(Simeone)_01.jpg?width=2200";
-const CHAPTER_IMAGE =
-  "https://commons.wikimedia.org/wiki/Special:FilePath/Mercedes-Benz_300_SL_-_Innenraum.JPG?width=1800";
+import heroImage from "@/assets/hero-mercedes-300-sl-gullwing.jpg";
+import chapterImage from "@/assets/chapter-mercedes-300-sl-interior.jpg";
 
 export default function Home() {
   return (
@@ -29,7 +26,7 @@ function MuseumHero() {
     <header className="relative isolate overflow-hidden bg-[#09090b] text-white">
       <div className="absolute inset-0">
         <img
-          src={HERO_IMAGE}
+          src={heroImage}
           alt="Voiture en exposition dans une salle sombre"
           className="h-full w-full scale-[1.08] object-cover object-center opacity-80 grayscale-[0.12] contrast-[1.15]"
         />
@@ -150,7 +147,7 @@ function FirstChapter() {
           className="relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.02]"
         >
           <img
-            src={CHAPTER_IMAGE}
+            src={chapterImage}
             alt="Intérieur de la Mercedes-Benz 300 SL Gullwing exposée dans une galerie"
             className="aspect-[6/4] w-full object-cover grayscale-[0.1] contrast-[1.08]"
           />
