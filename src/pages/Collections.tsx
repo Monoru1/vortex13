@@ -93,8 +93,8 @@ export default function Collections() {
       </header>
 
       {/* Barre d'outils : filtres + recherche */}
-      <div ref={toolbarRef} className="glass sticky top-[72px] z-40">
-        <div className="shell flex flex-col gap-4 py-4 md:flex-row md:items-center">
+      <div ref={toolbarRef} className="sticky top-[72px] z-30 border-b border-white/10 bg-[#09090b]/70 backdrop-blur-sm">
+        <div className="shell flex flex-col gap-3 py-3 md:flex-row md:items-center">
           <div className="no-scrollbar -mx-6 flex gap-2 overflow-x-auto px-6 md:mx-0 md:overflow-visible md:px-0" role="group" aria-label="Filtrer par collection">
             {(["tous", ...CATEGORIES.map((c) => c.id)] as Filter[]).map((f) => (
               <button
@@ -102,10 +102,10 @@ export default function Collections() {
                 onClick={() => setFilter(f)}
                 aria-pressed={filter === f}
                 className={cn(
-                  "shrink-0 border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300",
+                  "shrink-0 border-b border-transparent px-2 py-2 font-mono text-[9px] uppercase tracking-[0.22em] transition-colors duration-300",
                   filter === f
-                    ? "border-vortex bg-vortex text-white"
-                    : "border-line text-smoke hover:border-smoke hover:text-ink",
+                    ? "border-vortex text-white"
+                    : "text-white/55 hover:border-white/20 hover:text-white",
                 )}
               >
                 {f === "tous" ? "Tous" : CATEGORIES.find((c) => c.id === f)!.label}
@@ -113,21 +113,21 @@ export default function Collections() {
             ))}
           </div>
 
-          <label className="relative ml-auto flex min-w-[15rem] flex-1 items-center md:max-w-xs">
-            <Search size={14} className="absolute left-3 text-smoke" aria-hidden="true" />
+          <label className="relative ml-auto flex min-w-[14rem] flex-1 items-center md:max-w-xs">
+            <Search size={14} className="absolute left-3 text-white/45" aria-hidden="true" />
             <input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Rechercher un modèle, une marque…"
               aria-label="Rechercher un véhicule"
-              className="w-full border border-line bg-transparent py-2.5 pl-9 pr-9 font-mono text-xs tracking-wide text-ink placeholder:text-smoke/60 focus:border-vortex focus:outline-none"
+              className="w-full border border-white/10 bg-white/[0.02] py-2.5 pl-9 pr-9 font-mono text-[11px] tracking-[0.12em] text-white placeholder:text-white/35 focus:border-white/25 focus:outline-none"
             />
             {query && (
               <button
                 onClick={() => setQuery("")}
                 aria-label="Effacer la recherche"
-                className="absolute right-2 text-smoke hover:text-vortex"
+                className="absolute right-2 text-white/50 hover:text-white"
               >
                 <X size={14} />
               </button>

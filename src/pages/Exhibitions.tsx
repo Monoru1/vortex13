@@ -166,14 +166,14 @@ export default function Exhibitions() {
       <div className="shell pb-6 pt-2">
         <nav
           aria-label="Navigation locale des expositions"
-          className="glass sticky top-[72px] z-30 overflow-hidden"
+          className="sticky top-[72px] z-30 border-b border-white/10 bg-[#09090b]/75 backdrop-blur-sm"
         >
-          <div className="no-scrollbar flex gap-2 overflow-x-auto px-3 py-3 md:justify-center">
+          <div className="no-scrollbar flex gap-2 overflow-x-auto px-1 py-3 md:justify-center">
             {LOCAL_NAV.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                className="shrink-0 border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:border-vortex hover:text-ink"
+                className="shrink-0 border-b border-transparent px-3 py-2 font-mono text-[9px] uppercase tracking-[0.22em] text-white/55 transition-colors hover:border-white/20 hover:text-white"
               >
                 {item.label}
               </a>

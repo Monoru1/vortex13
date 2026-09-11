@@ -31,39 +31,39 @@ function MuseumHero() {
         <img
           src={HERO_IMAGE}
           alt="Voiture en exposition dans une salle sombre"
-          className="h-full w-full object-cover object-center opacity-80 grayscale-[0.18] contrast-125"
+          className="h-full w-full scale-[1.08] object-cover object-center opacity-80 grayscale-[0.12] contrast-[1.15]"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_28%,rgba(255,255,255,0.2),transparent_20%),linear-gradient(90deg,rgba(9,9,11,0.88)_0%,rgba(9,9,11,0.52)_36%,rgba(9,9,11,0.88)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_64%_30%,rgba(255,255,255,0.18),transparent_16%),linear-gradient(90deg,rgba(9,9,11,0.82)_0%,rgba(9,9,11,0.38)_40%,rgba(9,9,11,0.9)_100%)]" />
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#09090b] via-[#09090b]/60 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#09090b] via-[#09090b]/72 to-transparent" />
 
-      <div className="shell relative z-10 flex min-h-[100svh] items-end pb-16 pt-28 md:pb-20 md:pt-32">
-        <div className="w-full max-w-3xl">
+      <div className="shell relative z-10 flex min-h-[100svh] items-end pb-14 pt-28 md:pb-16 md:pt-32">
+        <div className="w-full max-w-2xl">
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="font-mono text-[10px] uppercase tracking-[0.32em] text-white/65"
+            className="font-mono text-[9px] uppercase tracking-[0.28em] text-white/70"
           >
             1955 — Mercedes 300 SL Gullwing
           </motion.p>
 
           <motion.h1
-            initial={{ opacity: 0, y: 28 }}
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: EASE }}
-            className="mt-6 text-[clamp(3.7rem,9vw,8.2rem)] font-black uppercase leading-[0.86] tracking-[-0.08em] text-white"
+            transition={{ duration: 0.9, delay: 0.08, ease: EASE }}
+            className="mt-4 max-w-xl text-[clamp(2.7rem,7vw,5.4rem)] font-black uppercase leading-[0.9] tracking-[-0.08em] text-white"
           >
-            La légende,
-            <span className="block text-white/90">en silence.</span>
+            La légende
+            <span className="block text-white/80">en silence.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
-            className="mt-6 max-w-lg text-base leading-relaxed text-white/72 md:text-lg"
+            transition={{ duration: 0.8, delay: 0.18, ease: EASE }}
+            className="mt-5 max-w-md text-sm leading-relaxed text-white/72 md:text-base"
           >
             Une galerie de mémoire où chaque voiture garde le poids de son époque, de sa lumière et de son bruit.
           </motion.p>
@@ -71,18 +71,18 @@ function MuseumHero() {
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: EASE }}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            transition={{ duration: 0.8, delay: 0.3, ease: EASE }}
+            className="mt-8 flex flex-wrap items-center gap-4"
           >
             <Link
               to="/collections"
-              className="inline-flex items-center gap-2 border border-white/20 bg-white/5 px-6 py-3 font-mono text-[10px] uppercase tracking-[0.28em] text-white/85 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/10"
+              className="inline-flex items-center gap-2 border border-white/20 bg-white/5 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.24em] text-white/85 backdrop-blur-sm transition-colors hover:border-white/35 hover:bg-white/10"
             >
               Découvrir la collection
             </Link>
             <Link
               to="/histoire"
-              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.28em] text-white/65 transition-colors hover:text-white"
+              className="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.24em] text-white/65 transition-colors hover:text-white"
             >
               Notre histoire <ArrowRight size={14} />
             </Link>
@@ -90,28 +90,27 @@ function MuseumHero() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: EASE }}
-          className="ml-auto hidden w-full max-w-xs self-end pb-4 md:block"
+          transition={{ duration: 0.8, delay: 0.38, ease: EASE }}
+          className="ml-auto hidden w-full max-w-[12rem] self-end pb-8 md:block"
         >
-          <div className="grid gap-5 border-l border-white/10 pl-8">
+          <div className="space-y-4 border-l border-white/10 pl-6">
             {[
               ["Collection", "68 véhicules"],
-              ["1966", "Le Mans"],
               ["1954", "300 SL"],
               ["Paris", "Halle 02"],
             ].map(([label, value]) => (
               <div key={label}>
-                <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">{label}</p>
-                <p className="mt-2 text-2xl font-black tracking-[-0.06em] text-white">{value}</p>
+                <p className="font-mono text-[9px] uppercase tracking-[0.24em] text-white/45">{label}</p>
+                <p className="mt-2 text-xl font-black tracking-[-0.05em] text-white">{value}</p>
               </div>
             ))}
           </div>
         </motion.div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-white/60">
+      <div className="absolute bottom-5 left-1/2 z-10 -translate-x-1/2 text-white/60">
         <ArrowDown size={16} className="mx-auto" />
       </div>
     </header>
