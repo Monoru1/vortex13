@@ -82,6 +82,13 @@ html.light {
   }
   .hairline-t { border-top: 1px solid var(--line); }
   .hairline-b { border-bottom: 1px solid var(--line); }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .page-ambience {

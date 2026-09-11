@@ -94,15 +94,15 @@ export default function Collections() {
 
       {/* Barre d'outils : filtres + recherche */}
       <div ref={toolbarRef} className="glass sticky top-[72px] z-40">
-        <div className="shell flex flex-wrap items-center gap-x-6 gap-y-4 py-4">
-          <div className="flex flex-wrap gap-2" role="group" aria-label="Filtrer par collection">
+        <div className="shell flex flex-col gap-4 py-4 md:flex-row md:items-center">
+          <div className="no-scrollbar -mx-6 flex gap-2 overflow-x-auto px-6 md:mx-0 md:overflow-visible md:px-0" role="group" aria-label="Filtrer par collection">
             {(["tous", ...CATEGORIES.map((c) => c.id)] as Filter[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f)}
                 aria-pressed={filter === f}
                 className={cn(
-                  "border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300",
+                  "shrink-0 border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors duration-300",
                   filter === f
                     ? "border-vortex bg-vortex text-white"
                     : "border-line text-smoke hover:border-smoke hover:text-ink",

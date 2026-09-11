@@ -35,6 +35,13 @@ test("navigation and vehicle route work", async ({ page }) => {
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
 });
 
+test("vehicle detail no longer exposes scanner interaction", async ({ page }) => {
+  await page.goto("/vehicules/ferrari-f40");
+  await expect(page).toHaveURL(/\/vehicules\/ferrari-f40/);
+  await expect(page.getByRole("heading", { name: /Ferrari/i })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Scanner le véhicule/i })).toHaveCount(0);
+});
+
 test("critical accessibility rules pass", async ({ page }) => {
   const results = await new AxeBuilder({ page }).disableRules(["color-contrast"]).analyze();
   expect(results.violations).toEqual([]);
