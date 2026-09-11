@@ -3,10 +3,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
-import { CustomCursor } from "@/components/fx/CustomCursor";
 import { Preloader } from "@/components/fx/Preloader";
 import { VortexAtmosphere } from "@/components/fx/VortexAtmosphere";
-import { ImmersiveHall } from "@/components/hero/ImmersiveHall";
 import { PageAmbience } from "@/components/layout/PageAmbience";
 import { EASE } from "@/lib/utils";
 
@@ -31,7 +29,6 @@ export function Layout() {
   return (
     <>
       <Preloader />
-      <CustomCursor />
       <PageAmbience />
       {!isHome && <VortexAtmosphere />}
       <Navbar />
@@ -44,7 +41,6 @@ export function Layout() {
         exit={{ opacity: 0, y: -18, scale: 1.006, filter: "blur(10px)" }}
         transition={{ duration: 0.82, ease: EASE }}
       >
-        {isHome && <ImmersiveHall />}
         <div className={isHome ? "vortex-home-outlet" : undefined}>
           <Outlet />
         </div>
