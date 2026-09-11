@@ -307,10 +307,6 @@ html.light {
     linear-gradient(115deg, transparent 46%, rgb(255 255 255 / 0.05) 54%, transparent 64%);
 }
 
-.vortex-home-outlet > section:first-child {
-  display: none;
-}
-
 @media (pointer: fine) {
   html.cursor-custom,
   html.cursor-custom a,

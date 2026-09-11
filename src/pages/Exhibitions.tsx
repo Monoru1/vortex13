@@ -150,6 +150,7 @@ export default function Exhibitions() {
 
       <header className="shell pb-16 pt-40 md:pb-20">
         <SectionHeading
+          level={1}
           eyebrow="Programmation 2026"
           lines={["Ce qui se passe", "sous la Nef"]}
           lead="Quatre expositions, des nocturnes, des démarrages publics et des rencontres avec ceux qui ont dessiné ces machines."

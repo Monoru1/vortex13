@@ -287,6 +287,7 @@ export default function Contact() {
 
       <header className="shell pb-16 pt-40 md:pb-20">
         <SectionHeading
+          level={1}
           eyebrow="Contact & informations pratiques"
           lines={["Venez voir", "les machines"]}
           lead="Une question, un projet de privatisation, une visite de groupe ? Écrivez-nous — et si vous passez simplement, voici tout ce qu'il faut savoir."

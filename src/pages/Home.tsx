@@ -1,19 +1,20 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion, useScroll, useTransform, AnimatePresence } from "framer-motion";
-import { ChevronDown, MapPin, Quote } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { MapPin, Quote } from "lucide-react";
 import { Seo } from "@/components/seo/Seo";
-import { Reveal, RevealLines } from "@/components/ui/Reveal";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Counter } from "@/components/ui/Counter";
 import { ButtonLink } from "@/components/ui/Button";
 import { TiltCard } from "@/components/ui/TiltCard";
 import { CarImage } from "@/components/ui/CarImage";
-import { CATEGORIES, VEHICLES, img } from "@/data/vehicles";
+import { CATEGORIES, VEHICLES } from "@/data/vehicles";
 import { ADDRESS, EXHIBITIONS, STATS, TESTIMONIALS } from "@/data/museum";
 import { EASE, cn } from "@/lib/utils";
+import { DriveExperience } from "@/components/sections/DriveExperience";
+import { DimensionalGarage } from "@/components/sections/DimensionalGarage";
 
-const HERO_IMAGE = img("photo-1605559424843-9e4c228bf1c2", 2000);
 const FEATURED = ["ferrari-f40", "mclaren-f1", "bugatti-chiron-ss-300"];
 
 export default function Home() {
@@ -23,102 +24,16 @@ export default function Home() {
         title="Accueil"
         description="VORTEX Automotive Museum, Paris — 68 voitures iconiques des classiques aux hypercars. Collections, expositions, billetterie."
       />
-      <Hero />
       <Manifesto />
+      <DriveExperience />
       <CollectionsPreview />
       <KeyFigures />
       <LatestExhibitions />
+      <DimensionalGarage />
       <FeaturedVehicles />
       <Testimonials />
       <Visit />
     </>
-  );
-}
-
-/* ------------------------------------------------------------------------ */
-/*  01 — Héro plein écran : vidéo si fournie (public/hero.mp4), sinon        */
-/*  image cinématique en parallaxe. Toujours un poster : jamais d'écran vide. */
-/* ------------------------------------------------------------------------ */
-function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
-
-  return (
-    <section ref={ref} className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden">
-      <motion.div className="absolute inset-0" style={reduced ? undefined : { y: bgY }}>
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={HERO_IMAGE}
-          aria-hidden="true"
-        >
-          <source src="/hero.mp4" type="video/mp4" />
-        </video>
-        {/* Voiles cinématiques : lisibilité du texte garantie quel que soit le média */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0B]/70 via-[#0A0A0B]/20 to-[#0A0A0B]" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0B]/60 to-transparent" />
-      </motion.div>
-
-      <motion.div style={reduced ? undefined : { opacity: fade }} className="shell relative pb-28 pt-40 md:pb-32">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8, ease: EASE }}
-          className="telemetry text-white/70"
-        >
-          Musée automobile — Paris, quais de Seine
-        </motion.p>
-
-        <h1 className="mt-6 text-[clamp(2.6rem,12vw,7.5rem)] font-black uppercase leading-[0.88] tracking-tight text-[#F4F4F2]">
-          <RevealLines lines={["La vitesse", "entre au musée"]} />
-        </h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8, ease: EASE }}
-          className="mt-7 max-w-md text-base leading-relaxed text-white/70 md:text-lg"
-        >
-          68 machines qui ont changé l'histoire, de la 300 SL de 1954 à la Chiron
-          des 490 km/h. Toutes en état de marche. Toutes racontées.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.8, ease: EASE }}
-          className="mt-10 flex flex-wrap gap-4"
-        >
-          <ButtonLink to="/expositions#billetterie">Réserver une visite</ButtonLink>
-          <ButtonLink to="/collections" variant="ghost" className="border-white/25 text-white hover:text-vortex">
-            Explorer la collection
-          </ButtonLink>
-        </motion.div>
-      </motion.div>
-
-      {/* Bandeau télémétrie : la donnée comme matière graphique */}
-      <div className="relative border-t border-white/10 bg-[#0A0A0B]/60 backdrop-blur-md">
-        <div className="shell flex flex-wrap items-center justify-between gap-x-10 gap-y-3 py-5">
-          {[
-            ["Collection", "68 véhicules"],
-            ["Pointe max", "490 km/h"],
-            ["Doyenne", "1954"],
-            ["Nations", "9 pays"],
-          ].map(([k, v]) => (
-            <p key={k} className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/50">
-              {k} <span className="ml-2 text-white/90">{v}</span>
-            </p>
-          ))}
-          <ChevronDown size={16} className="animate-bounce text-vortex" aria-hidden="true" />
-        </div>
-      </div>
-    </section>
   );
 }
 

@@ -155,6 +155,7 @@ export default function Gallery() {
 
       <header className="shell pb-14 pt-40 md:pb-16">
         <SectionHeading
+          level={1}
           eyebrow={`Galerie — ${GALLERY.length} photographies`}
           lines={["Le musée,", "en pleine lumière"]}
           lead="Chaque image s'ouvre en plein écran. Navigation au clavier : flèches pour parcourir, Échap pour fermer."

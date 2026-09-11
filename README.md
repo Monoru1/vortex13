@@ -1,6 +1,6 @@
 # VORTEX Automotive Museum
 
-Site vitrine premium d'un musée automobile fictif. React 18 · Vite 7 · TypeScript strict · Tailwind CSS · Framer Motion · React Router 6 · ESLint 9.
+Site vitrine premium d'un musée automobile fictif. React 18 · Vite 7 · TypeScript strict · Tailwind CSS · Framer Motion · React Router 7 · OGL · Playwright · ESLint 9.
 
 ## Démarrage
 
@@ -10,6 +10,8 @@ npm run dev        # http://localhost:5173
 npm run build      # type-check (tsc -b) + build production dans dist/
 npm run preview    # sert le build de production en local
 npm run lint       # ESLint 9 (flat config) — 0 erreur, 0 avertissement
+npm run test:e2e   # desktop, mobile, reduced-motion et axe-core
+npm run audit:visual # captures complètes + erreurs console/réseau
 ```
 
 ## Structure

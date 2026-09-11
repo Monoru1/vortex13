@@ -85,6 +85,7 @@ export default function Collections() {
       />
       <header className="shell pb-16 pt-40 md:pb-20">
         <SectionHeading
+          level={1}
           eyebrow={`Collection permanente — ${VEHICLES.length} fiches en ligne`}
           lines={["Les machines,", "une par une"]}
           lead="Chaque véhicule de la collection possède sa fiche complète : histoire, télémétrie, anecdotes et chronologie."
