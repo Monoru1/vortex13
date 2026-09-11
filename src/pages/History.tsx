@@ -58,14 +58,13 @@ const CHAPTERS = [
     eyebrow: "La salle machine",
     title: ["La voiture", "prend le centre"],
     voice:
-      "Dans le showroom, le décor s'efface. Il reste la voiture, les points de scan, la plaque technique et cette tension étrange : la machine semble pouvoir démarrer derrière l'écran.",
+      "Dans le showroom, le décor s'efface. Il reste la voiture, sa ligne, sa plaque technique et cette tension étrange : la machine semble contenir encore tout son bruit.",
     guide: "Le fond n'est qu'une température. Le sujet, c'est la voiture.",
     image: img("photo-1493238792000-8113da705763", 1800),
-    caption: "Salle Hypercars — scanner actif, lumière froide, carbone",
+    caption: "Salle Hypercars — lumière froide, carbone, plaque technique",
     accent: "#43B4FF",
     glow: "rgb(67 180 255 / 0.25)",
     beats: [
-      ["Scanner", "Une passe lumineuse révèle la mécanique comme un instrument chirurgical."],
       ["Plaque", "La donnée devient matière : aluminium, carbone, chiffres gravés."],
       ["Suite", "La voiture suivante n'est pas un lien. C'est une autre porte."],
     ],

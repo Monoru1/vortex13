@@ -1,4 +1,4 @@
-import { useMemo, useState, type CSSProperties } from "react";
+import { useMemo, type CSSProperties } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -83,7 +83,6 @@ function FrameCorners() {
 export default function VehicleDetail() {
   const { slug = "" } = useParams();
   const reduced = useReducedMotion();
-  const [scanned, setScanned] = useState(false);
   const vehicle = getVehicle(slug);
 
   const { accent, prev, next } = useMemo(() => {
@@ -112,7 +111,7 @@ export default function VehicleDetail() {
       />
 
       <header
-        className={cn("vehicle-room", scanned && "is-scanning")}
+        className="vehicle-room"
         style={roomStyle}
         aria-label={`Showroom ${vehicle.brand} ${vehicle.name}`}
       >
@@ -133,19 +132,7 @@ export default function VehicleDetail() {
         <div className="vehicle-room__grade" aria-hidden="true" />
         <div className="vehicle-room__veil" aria-hidden="true" />
         <div className="vehicle-room__floor" aria-hidden="true" />
-        <div className="vehicle-room__scanline" aria-hidden="true" />
         <FrameCorners />
-
-        {ambiance.points.map((point, index) => (
-          <span
-            key={point.label}
-            className={cn("vehicle-hotspot", (scanned || reduced) && "is-on")}
-            style={{ left: `${point.left}%`, top: `${point.top}%`, transitionDelay: scanned && !reduced ? `${index * 120}ms` : "0ms" }}
-          >
-            <span className="vehicle-hotspot__dot" />
-            <span className="vehicle-hotspot__label">{point.label}</span>
-          </span>
-        ))}
 
         <div className="shell vehicle-room__content grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_360px]">
           <motion.div
@@ -171,15 +158,10 @@ export default function VehicleDetail() {
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/72 md:text-lg">
               {vehicle.tagline}
             </p>
-            <button
-              type="button"
-              onClick={() => setScanned((value) => !value)}
-              className="mt-8 inline-flex items-center gap-3 border px-5 py-3 font-mono text-xs uppercase tracking-[0.22em] transition-transform duration-300 hover:-translate-y-0.5"
-              style={{ borderColor: ambiance.accent, color: ambiance.accent }}
-            >
+            <div className="mt-8 inline-flex items-center gap-3 border px-5 py-3 font-mono text-xs uppercase tracking-[0.22em]" style={{ borderColor: ambiance.accent, color: ambiance.accent }}>
               <span aria-hidden="true">⊹</span>
-              {scanned ? "Masquer le scanner" : "Scanner le véhicule"}
-            </button>
+              Fiche technique
+            </div>
           </motion.div>
 
           <aside className="tech-plate relative z-10" aria-label={`Plaque technique ${vehicle.brand} ${vehicle.name}`}>

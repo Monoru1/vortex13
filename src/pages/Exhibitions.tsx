@@ -14,6 +14,12 @@ const STATUS_STYLE: Record<string, string> = {
   permanente: "border-line text-ink",
 };
 
+const LOCAL_NAV = [
+  { id: "expositions", label: "Expositions" },
+  { id: "agenda", label: "Agenda" },
+  { id: "billetterie", label: "Billetterie" },
+] as const;
+
 /* ---------- Billetterie fictive ---------- */
 
 const TICKETS = [
@@ -157,8 +163,27 @@ export default function Exhibitions() {
         />
       </header>
 
+      <div className="shell pb-6 pt-2">
+        <nav
+          aria-label="Navigation locale des expositions"
+          className="glass sticky top-[72px] z-30 overflow-hidden"
+        >
+          <div className="no-scrollbar flex gap-2 overflow-x-auto px-3 py-3 md:justify-center">
+            {LOCAL_NAV.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                className="shrink-0 border border-line px-4 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-smoke transition-colors hover:border-vortex hover:text-ink"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </nav>
+      </div>
+
       {/* ===== Expositions ===== */}
-      <section aria-label="Expositions" className="shell pb-24 md:pb-32">
+      <section id="expositions" aria-label="Expositions" className="shell pb-24 md:pb-32">
         <div className="grid gap-px border border-line bg-[var(--line)] md:grid-cols-2">
           {EXHIBITIONS.map((e, i) => (
             <Reveal key={e.slug} delay={(i % 2) * 0.08} className="bg-bg">
@@ -199,7 +224,7 @@ export default function Exhibitions() {
       </section>
 
       {/* ===== Agenda ===== */}
-      <section aria-labelledby="agenda-titre" className="border-t border-line">
+      <section id="agenda" aria-labelledby="agenda-titre" className="border-t border-line">
         <div className="shell py-24 md:py-32">
           <Reveal>
             <p className="telemetry">Agenda · Été 2026</p>
@@ -228,7 +253,9 @@ export default function Exhibitions() {
         </div>
       </section>
 
-      <Ticketing />
+      <div id="billetterie">
+        <Ticketing />
+      </div>
     </>
   );
 }

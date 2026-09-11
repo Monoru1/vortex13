@@ -20,8 +20,7 @@
 
 .vehicle-room__grade,
 .vehicle-room__veil,
-.vehicle-room__floor,
-.vehicle-room__scanline {
+.vehicle-room__floor {
   position: absolute;
   pointer-events: none;
   inset: 0;
@@ -76,75 +75,6 @@
   font-size: clamp(3rem, 11vw, 8rem);
   line-height: 0.86;
   letter-spacing: -0.02em;
-}
-
-.vehicle-room__scanline {
-  left: 0;
-  right: auto;
-  width: 3px;
-  opacity: 0;
-  background: linear-gradient(to bottom, transparent, var(--room-accent), transparent);
-  box-shadow: 0 0 26px 4px color-mix(in srgb, var(--room-accent) 55%, transparent);
-  z-index: 5;
-}
-
-.vehicle-room.is-scanning .vehicle-room__scanline {
-  animation: showroom-scan 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@keyframes showroom-scan {
-  0% { left: 2%; opacity: 0; }
-  8% { opacity: 1; }
-  92% { opacity: 1; }
-  100% { left: 98%; opacity: 0; }
-}
-
-.vehicle-hotspot {
-  position: absolute;
-  z-index: 7;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.vehicle-hotspot.is-on {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.vehicle-hotspot__dot {
-  display: block;
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: var(--room-accent);
-  box-shadow: 0 0 0 4px color-mix(in srgb, var(--room-accent) 18%, transparent), 0 0 16px var(--room-accent);
-}
-
-.vehicle-hotspot__label {
-  position: absolute;
-  left: 16px;
-  top: -6px;
-  white-space: nowrap;
-  border: 1px solid color-mix(in srgb, var(--room-accent) 35%, transparent);
-  background: rgb(10 18 28 / 0.72);
-  padding: 5px 9px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: white;
-  backdrop-filter: blur(6px);
-}
-
-.vehicle-hotspot__label::before {
-  content: "";
-  position: absolute;
-  left: -16px;
-  top: 50%;
-  width: 16px;
-  height: 1px;
-  background: color-mix(in srgb, var(--room-accent) 60%, transparent);
 }
 
 .tech-plate {
@@ -205,10 +135,8 @@
   .vehicle-room__content { padding-top: 6rem; }
   .vehicle-room__frame--tl, .vehicle-room__frame--tr { top: 84px; }
   .vehicle-room__frame--bl, .vehicle-room__frame--br { bottom: 84px; }
-  .vehicle-hotspot, .vehicle-room__scanline { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vehicle-room.is-scanning .vehicle-room__scanline { animation: none; }
-  .vehicle-hotspot { opacity: 1; transform: none; }
+  .vehicle-room__image { transform: none; }
 }

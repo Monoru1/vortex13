@@ -82,6 +82,13 @@ html.light {
   }
   .hairline-t { border-top: 1px solid var(--line); }
   .hairline-b { border-bottom: 1px solid var(--line); }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .page-ambience {
@@ -305,14 +312,6 @@ html.light {
   background:
     radial-gradient(50% 60% at 70% 22%, rgb(225 6 0 / 0.18), transparent 60%),
     linear-gradient(115deg, transparent 46%, rgb(255 255 255 / 0.05) 54%, transparent 64%);
-}
-
-@media (pointer: fine) {
-  html.cursor-custom,
-  html.cursor-custom a,
-  html.cursor-custom button {
-    cursor: none;
-  }
 }
 
 @media (max-width: 760px) {
