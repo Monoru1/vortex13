@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vortex-museum.example.com/sitemap.xml
+Sitemap: https://vortex13.netlify.app/sitemap.xml

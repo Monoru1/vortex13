@@ -1,5 +1,8 @@
 # Dépendances
 node_modules/
+artifacts/
+test-results/
+playwright-report/
 
 # Build
 dist/
@@ -22,3 +25,4 @@ npm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .idea/
+.netlify/
